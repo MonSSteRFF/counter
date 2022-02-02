@@ -1,0 +1,32 @@
+<span class="count" data-count="20220">0</span>
+<span class="count" data-count="10000">1</span>
+<span class="count" data-count="100">1</span>
+
+<script type="text/javascript">
+  let elem = document.querySelectorAll('.count');
+
+  if (elem.length <= 1){
+    count_for(elem[0]);
+  } else {
+    for(let i = 0; i < elem.length; i++){
+      count_for(elem[i]);
+    }
+  }
+
+  function count_for(elem){
+    let count_in = Number(elem.innerText);
+    let count_to = Number(elem.getAttribute('data-count'));
+
+    if (count_in !== count_to){
+      let x = count_in;
+      let int = setInterval(function(){
+        x += Math.ceil(count_to / 13);
+        elem.innerText = x;
+        if( x > count_to ){
+          elem.innerText = count_to;
+          clearInterval(int);
+        }
+      }, 60);
+    }
+  }
+</script>
